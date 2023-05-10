@@ -56,15 +56,14 @@ function BlueBikeStationStatus() {
       <div>
         <select value={start_station} onChange={e => setStartStation(+e.target.value)}>
           {stations.map((station: any) => (
-            <option value={station.id}>{station.id}</option>
+            <option value={station.id}>{station.name}</option>
           ))}
         </select>
         <select value={end_station} onChange={e => setEndStation(+e.target.value)}>
           {stations.map((station: any) => (
-            <option value={station.id}>{station.id}</option>
+            <option value={station.id}>{station.name}</option>
           ))}
         </select>
-        <div> </div>
         <p> {available_bikes[0]} bikes available at {stations.find(x => x.id === start_station)?.name} </p>
         <p> {available_bikes[1]} docks available at {stations.find(x => x.id === end_station)?.name} </p>
       </div>

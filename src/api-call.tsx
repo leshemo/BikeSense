@@ -28,7 +28,7 @@ export async function BlueBikeGetTwoStationStatus(start_station_id:number = 342,
 
 export async function BlueBikeGetStations() {
     
-    const result = await axios.get('https://gbfs.bluebikes.com/gbfs/en/station_status.json');
+    const result = await axios.get('https://gbfs.bluebikes.com/gbfs/en/station_information.json');
     const stations = result.data.data.stations
 
     let station_names_and_ids: {name:string, id:number}[] = []

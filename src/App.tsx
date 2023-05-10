@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Station Status:
+          BlueBike Station Status:
           <BlueBikeStationStatus />
         </p>
         
@@ -54,18 +54,21 @@ function BlueBikeStationStatus() {
   else {    
     return (
       <div>
-        <select value={start_station} onChange={e => setStartStation(+e.target.value)}>
+        <small>Start Station: </small>
+        <br></br>
+        <small><select value={start_station} onChange={e => setStartStation(+e.target.value)}>
           {stations.map((station: any) => (
             <option value={station.id}>{station.name}</option>
           ))}
-        </select>
-        <select value={end_station} onChange={e => setEndStation(+e.target.value)}>
+        </select>: {available_bikes[0]} bike(s) available. </small>
+        <br></br>
+        <small>End Station: </small>
+        <br></br>
+        <small><select value={end_station} onChange={e => setEndStation(+e.target.value)}>
           {stations.map((station: any) => (
             <option value={station.id}>{station.name}</option>
           ))}
-        </select>
-        <p> {available_bikes[0]} bikes available at {stations.find(x => x.id === start_station)?.name} </p>
-        <p> {available_bikes[1]} docks available at {stations.find(x => x.id === end_station)?.name} </p>
+        </select>: {available_bikes[1]} dock(s) available. </small>
       </div>
     );
   }

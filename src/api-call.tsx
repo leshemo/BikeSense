@@ -36,6 +36,8 @@ export async function BlueBikeGetStations() {
         station_names_and_ids.push({name:station.name, id:station.station_id})
             
     }
+    station_names_and_ids.sort((a, b) => a.name.localeCompare(b.name))
+
     
     return station_names_and_ids;
 

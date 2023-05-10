@@ -24,6 +24,25 @@
   color: rgb(0, 0, 0);
 }
 
+ul {
+  list-style-position: outside;
+  list-style-type: circle;
+}
+
+div {
+  margin: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
+
+select {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +55,5 @@
     transform: rotate(360deg);
   }
 }
+
+

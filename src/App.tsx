@@ -1,6 +1,6 @@
 import './App.css';
 import {BlueBikeGetTwoStationStatus, BlueBikeGetStations} from './api-call';
-import {JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect,useState} from 'react'
+import {useEffect,useState} from 'react'
 
 
 function App() {

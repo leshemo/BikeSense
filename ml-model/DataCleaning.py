@@ -2,6 +2,7 @@ import pandas as pd
 from pandas import to_datetime
 import seaborn as sns
 import matplotlib.pyplot as plti
+import requests
 
 #"C:\Users\leshe\Documents\GitHub\BlueBike-AI-Copy"
 #balancing first
@@ -129,4 +130,15 @@ def doTheThing():
                 rebalance(year_month)
                 bikeAvail(year_month)
 
-addMoreParams()
+
+
+
+def getStationCapacity():
+      response = requests.get("https://gbfs.bluebikes.com/gbfs/en/station_information.json")
+      response = response.json()
+      out = {}
+      for station in response['data']['stations']:
+           out[station['station_id']] = station['capacity'] 
+      return out
+
+getStationCapacity()

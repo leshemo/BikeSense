@@ -45,7 +45,7 @@ class BikeCountController:
         minute = minutes % 60
         hour = int((minutes - minute) / 60)
         print("\nThe best moment to leave would be at", t(hour, minute, 0).strftime("%H:%M"))
-        return [hour, minute]
+        return {'hour': hour, 'minute': minute}
         
 # def main():
 #     # Prompts for the query
@@ -57,4 +57,4 @@ class BikeCountController:
 # if __name__ == "__main__":
 #     main()
 
-BikeCountController().initiateBikeQuery(342,12,15,74)
+# BikeCountController().initiateBikeQuery(342,12,15,74)

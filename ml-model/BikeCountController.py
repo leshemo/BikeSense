@@ -12,7 +12,7 @@ class BikeCountController:
         self.capacities = getStationCapacity()
 
 
-    def heuristic(self, startStationId, endStationId, minutes, time, temp,day, month, day_of_week, model = 'decision tree'):
+    def heuristic(self, startStationId, endStationId, minutes, time, temp,day, month, day_of_week, model = 'linear'):
         bikes = self.oracle.predictBikeCount(startStationId, minutes, temp, day, month, day_of_week, model, False)
         stationCapacity = self.capacities[str(endStationId)]
         spaces = stationCapacity - self.oracle.predictBikeCount(endStationId, (minutes + time), temp, day, month, day_of_week, model, False)
@@ -44,17 +44,19 @@ class BikeCountController:
             minutes = minutes + 1
         minute = minutes % 60
         hour = int((minutes - minute) / 60)
+        if hour >= 24:
+            hour = hour - 24
         print("\nThe best moment to leave would be at", t(hour, minute, 0).strftime("%H:%M"))
         return {'hour': hour, 'minute': minute}
         
-# def main():
-#     # Prompts for the query
-#     BCC = BikeCountController()
-#     BCC.initiateBikeQuery()
+def main():
+    # Prompts for the query
+    BCC = BikeCountController()
+    BCC.initiateBikeQuery()
 
 
 
 # if __name__ == "__main__":
 #     main()
 
-# BikeCountController().initiateBikeQuery(342,12,15,74)
+BikeCountController().initiateBikeQuery(417,12,20,50)

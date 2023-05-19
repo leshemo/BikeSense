@@ -8,6 +8,7 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 import joblib
+import datetime
 
 class BikeCountPredictor:
     def __init__(self, dataFilename=r"C:\Users\leshe\Documents\GitHub\NER\bluebike-ai\src\data\2022-2023-dock-data-updated-fo-real.csv"):
@@ -49,6 +50,7 @@ class BikeCountPredictor:
             model = GridSearchCV(DecisionTreeRegressor() , param_grid=params,scoring='neg_mean_squared_error',cv=5)
             model.fit(X_train, y_train)
             joblib.dump(model, './decision_tree_model.pkl')
+            self.stationModels['decision tree'] = model
         else:
             raise Exception(f"Desired model type {desired_model} does not exist")
         
@@ -66,8 +68,8 @@ class BikeCountPredictor:
         return desired_model in self.stationModels
     
     def predictBikeCount(self, stationId: int, minutes: float, temp: float, day: int, month: int, day_of_week: int, desired_model: str, verbose:bool = True) -> int:
-        if not self.existsStationModel(desired_model):
-            model =  self.createModel(desired_model, verbose)
+        # if not self.existsStationModel(desired_model):
+        #     model =  self.createModel(desired_model, verbose)
         if desired_model == "linear":
             model = joblib.load("linear_model.pkl")
         elif desired_model == "knn":
@@ -86,33 +88,38 @@ class BikeCountPredictor:
     
     
 def main():
+    first = datetime.datetime.now()
     BCP = BikeCountPredictor()
-    stationId = 81
-    minutes = 852 #15:50
-    temp = 83
-    day = 12
+    stationId = 417
+    minutes = 1403 #15:50
+    temp = 50
+    day = 18
     month = 5
-    day_of_week = 4
+    day_of_week = 3
     desired_model = 'linear'
     BCP.predictBikeCount(stationId, minutes, temp, day, month, day_of_week, desired_model)
     
-    stationId = 81
-    minutes = 852 #15:50
-    temp = 83
-    day = 12
+    stationId = 417
+    minutes = 1403 #15:50
+    temp = 50
+    day = 18
     month = 5
-    day_of_week = 4
+    day_of_week = 3
     desired_model = 'decision tree'
     BCP.predictBikeCount(stationId, minutes, temp, day, month, day_of_week, desired_model)
     
-    stationId = 81
-    minutes = 852 #15:50
-    temp = 83
-    day = 12
+
+    stationId = 417
+    minutes = 1403 #15:50
+    temp = 50
+    day = 18
     month = 5
-    day_of_week = 4
+    day_of_week = 3
     desired_model = 'knn'
     BCP.predictBikeCount(stationId, minutes, temp, day, month, day_of_week, desired_model)
+    last = datetime.datetime.now()
+    delta = last - first
+    print(delta.total_seconds())
 
     
-    
+main()

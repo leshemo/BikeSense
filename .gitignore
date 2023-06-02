@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/ml-model/ml-lambda-function-to-upload/myenv
+/ml-model/old_zips
+/ml-model/__pycache__
 
 # testing
 /coverage

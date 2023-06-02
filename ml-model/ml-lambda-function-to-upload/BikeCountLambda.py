@@ -65,4 +65,3 @@ class BikeCountLambda:
             hour = hour - 24
         print("\nThe best moment to leave would be at", t(hour, minute, 0).strftime("%H:%M"))
         return {'hour': hour, 'minute': minute}
-        

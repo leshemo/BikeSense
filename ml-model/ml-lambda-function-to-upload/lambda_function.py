@@ -13,3 +13,6 @@ def lambda_handler(event, context):
         'hour' : output['hour'],
         'minute' : output['minute']
     }
+
+
+lambda_handler({'startStation': 342, 'endStation': 12, 'lengthOfTrip': 10, 'temp': 50}, None)  # 1: 1, 2, 10, 50
